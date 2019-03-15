@@ -3,7 +3,7 @@ WeatherStatistics
 
 Цель проекта .......
 
-В приложение будет в двух форматах:
+Приложение будет в двух форматах:
 
 >**Web-Приложение**
 
@@ -16,10 +16,10 @@ WeatherStatistics
 Создайте виртуальное окружение и активируйте его:
 
 .. code-block:: text
-На Windows: env\Scripts\activate
+    На Windows: env\Scripts\activate
 
 .. code-block:: text
-На Mac или Linux: source env/bin/activate
+    На Mac или Linux: source env/bin/activate
 
 Потом в виртуальном окружении выполните:
 
@@ -30,7 +30,7 @@ WeatherStatistics
 Настройка
 ---------
 
-
+..........
 
 
 
@@ -41,13 +41,14 @@ WeatherStatistics
 ------
 
 
-
+.................
 
 используемые технологии
 -----------------------
 
-######Web
+WEB
+######
 
-Flask
+>Flask
 ***
 
