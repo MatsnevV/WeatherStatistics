@@ -3,11 +3,11 @@ WeatherStatistics
 
 Цель проекта .......
 
-Приложение будет в двух форматах:
+>Приложение будет в двух форматах:
 
->**Web-Приложение**
+>>**Web-Приложение**
 
->**TelegramBot**
+>>**TelegramBot**
 
 
 Установка
@@ -15,17 +15,17 @@ WeatherStatistics
 
 Создайте виртуальное окружение и активируйте его:
 
-.. code-block:: text
+```
     На Windows: env\Scripts\activate
-
-.. code-block:: text
+```
+```
     На Mac или Linux: source env/bin/activate
-
+```
 Потом в виртуальном окружении выполните:
 
-.. code-block:: text
+```
     pip install -r requirements.txt
-
+```
 
 Настройка
 ---------
