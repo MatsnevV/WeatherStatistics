@@ -1,4 +1,6 @@
 *.pyc
-*.log
-env/
 .vscode/
+__pycache__/
+*.log
+env
+config.py
