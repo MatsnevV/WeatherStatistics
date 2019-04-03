@@ -1,10 +1,11 @@
+#from urllib.request import urlopen
 from bs4 import BeautifulSoup
-from datetime import date, timedelta, datetime
 import requests
-
+import csv
+from time import sleep
 
 def get_html(url):
-    #проверим на валидность траницу и исключим ошибки
+    #проверим на валидность cтраницу и исключим ошибки
     try:
         result = requests.get(url)
         result.raise_for_status()
@@ -13,52 +14,64 @@ def get_html(url):
         print("сетевая ошибка")
         return False
 
-def get_python_weather(data_histori):
-    data_histori = data_histori.strftime('%Y-%m-%d')
-    #print(f"https://www.wunderground.com/history/daily/ru/moscow/UUWW/date/{data_histori}")
-    print("https://www.wunderground.com/history/daily/ru/moscow/UUWW/date/" + data_histori)
-    html = get_html("https://www.wunderground.com/history/daily/ru/moscow/UUWW/date/" + data_histori)
+def get_python_weather(month, year):
+    print(f"Скачиваю: http://www.meteo-tv.ru/weather/archive/?month={month}&year={year}")
+    html = get_html(f"http://www.meteo-tv.ru/weather/archive/?month={month}&year={year}")
+    
+    monthly_weather = []
+    result_weather = {}
 
     if html:
-        soup = BeautifulSoup(html, 'html.parser')
-        #print(soup)
-        all_weather = soup.find_all('div', class_="summary-table")
-        #.findAll('tr')
-        print(all_weather) 
-        print(result_weather)
+        soup = BeautifulSoup(html, 'lxml')
+        #all_weather = soup.find('div', class_="archive__cnt jsTableContent")
+
+        all_weather = soup.find_all('table', class_="archive-table")[1].find_all('tr')
+
+        monthly_weather = []
+
         for weather in all_weather:
-            title = weather.find('th').text
-            znach = weather.find('td').text
-            result_weather.append(data_histori, title, znach)
-            print(data_histori, title, znach)
-        return result_weather
+            result_weather = {}
+            wind = weather.find('td', class_="archive-table__wind").text
+            wet = weather.find('td', class_="archive-table__wet").text
+            pressure = weather.find('td', class_="archive-table__pressure").text
+            temp = weather.find('td', class_="archive-table__temp").text
+            
+            data = weather.find('td', class_="archive-table__date").text
+            
+            wind_dark = weather.find('td', class_="archive-table__wind dark").text
+            wet_dark = weather.find('td', class_="archive-table__wet dark").text
+            pressure_dark = weather.find('td', class_="archive-table__pressure dark").text
+            temp_dark = weather.find('td', class_="archive-table__temp dark").text
 
-result_weather = []
+            #print(data,wind,wet,pressure,temp,wind_dark,wet_dark,pressure_dark,temp_dark)
+           
+            result_weather['data'] = data.strip()[0:10]
+            result_weather['wind'] = wind.strip()
+            result_weather['wet'] = wet.strip()
+            result_weather['pressure'] = pressure.strip()
+            result_weather['temp'] = temp.strip()
+            result_weather['wind_dark'] = wind_dark.strip()
+            result_weather['wet_dark'] = wet_dark.strip()
+            result_weather['pressure_dark'] = pressure_dark.strip()
+            result_weather['temp_dark'] = temp_dark.strip()
 
-d = timedelta(days=1)
-date_now = datetime.now() 
-date_string = '2019-01-01 00:00:00.000000'
-date_old = datetime.strptime(date_string, '%Y-%m-%d %H:%M:%S.%f')
-#date_old = datetime.datetime(2000, 1, 1, 00, 00, 00, 000000)
+            monthly_weather.append(result_weather)
 
-'''2000-01-01 00:00:00.000000'''
+    return monthly_weather
 
-
-while date_now >= date_old:
-    get_python_weather(date_now)
-    date_now -= d
-    print(date_now)
+result_weather_list = []
+date_now = 2009
 
 
+while date_now <= 2019:
+        for i in range(1, 13, 1):
+            result_weather_list.append(get_python_weather(i, date_now))
+        date_now += 1
+
+with open('wundergroupCSV.csv', 'a') as f:
+    writer = csv.writer(f, delimiter=',')
+    writer.writerow(result_weather_list)
 
 
-
-#def save_news(title, url, published):
-#    weather_exists = weather.query.filter(News.url == url).count()
-#    print(weather_exists)
-#    if not news_exists:
-#        new_weather = weather(title=title, url=url, published=published)
-#        db.session.add(new_news)
-#        db.session.commit()
-
+#print(result_weather_list[5]['data'])   
 

@@ -11,25 +11,27 @@
 </head>
 <body>
     <div class="container">
-        <h3> 
-            Сервис погоды г.Москвы готов тебя порадовать статистическими показателями погоды на любую дату 
-        </h3>
+        <div class="row">
+            <h3> 
+                Сервис погоды г.Москвы готов тебя порадовать статистическими показателями погоды на любую дату 
+            </h3>
 
-        <h1>
-            {{page_title}}
-        </h1>
-            <div class="col-9">
+            <h1>
+                {{page_title}}
+            </h1>
+                <div class="col-9">
+                    
+                </div>
                 
+            <div class="col-3">
+                    <h1>
+                        {% if weather_nows %}
+                            Погода на данный момент: {{ weather_nows.temp_C }}
+                        {% else %}
+                            Сервис погоды временно недоступен
+                        {% endif %}
+                    </h1>
             </div>
-            
-        <div class="col-3">
-                <h1>
-                    {% if weather_nows %}
-                        Погода на данный момент: {{ weather_nows.temp_C }}
-                    {% else %}
-                        Сервис погоды временно недоступен
-                    {% endif %}
-                </h1>
         </div>
     </div>
     <!-- Optional JavaScript -->
