@@ -3,10 +3,13 @@ from flask import Flask, render_template
 
 #внутрений импорт
 from WebApp.weather_now import weather_by_city
+from WebApp.model import db, weather
+
 
 def create_app():
     app = Flask(__name__)
     app.config.from_pyfile('config.py')
+    db.init_app(app)
 
     @app.route('/')
     def index():

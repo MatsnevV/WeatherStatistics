@@ -75,3 +75,10 @@ with open('wundergroupCSV.csv', 'a') as f:
 
 #print(result_weather_list[5]['data'])   
 
+#def save_news(title, url, published):
+#    news_exists = News.query.filter(News.url == url).count()
+#    print(news_exists)
+#    if not news_exists:
+#        new_news = News(title=title, url=url, published=published)
+#        db.session.add(new_news)
+#        db.session.commit()
