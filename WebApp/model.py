@@ -4,7 +4,7 @@ db = SQLAlchemy()
 
 class weather(db.Model):
         id = db.Column(db.Integer, primary_key=True)
-        id_city = db.Column(db.Integer,nullable=False)
+        #id_city = db.Column(db.Integer,nullable=False)
         data = db.Column(db.DateTime, unique=True, nullable=False)
         wind = db.Column(db.Integer, nullable=False)
         wet = db.Column(db.Integer, nullable=False)

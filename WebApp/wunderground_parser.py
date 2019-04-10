@@ -2,8 +2,12 @@
 from bs4 import BeautifulSoup
 import requests
 import csv
-from time import sleep
+from datetime import datetime
+#from time import sleep
+from datetime import datetime, date
 
+
+from WebApp.model import db, weather
 def get_html(url):
     #проверим на валидность cтраницу и исключим ошибки
     try:
@@ -37,48 +41,54 @@ def get_python_weather(month, year):
             temp = weather.find('td', class_="archive-table__temp").text
             
             data = weather.find('td', class_="archive-table__date").text
-            
+            #изменяем формат времени
+            data = datetime.strptime(data.strip()[0:10], ' % d. % m. % Y')
+
             wind_dark = weather.find('td', class_="archive-table__wind dark").text
             wet_dark = weather.find('td', class_="archive-table__wet dark").text
             pressure_dark = weather.find('td', class_="archive-table__pressure dark").text
             temp_dark = weather.find('td', class_="archive-table__temp dark").text
 
             #print(data,wind,wet,pressure,temp,wind_dark,wet_dark,pressure_dark,temp_dark)
-           
-            result_weather['data'] = data.strip()[0:10]
-            result_weather['wind'] = wind.strip()
-            result_weather['wet'] = wet.strip()
-            result_weather['pressure'] = pressure.strip()
-            result_weather['temp'] = temp.strip()
-            result_weather['wind_dark'] = wind_dark.strip()
-            result_weather['wet_dark'] = wet_dark.strip()
-            result_weather['pressure_dark'] = pressure_dark.strip()
-            result_weather['temp_dark'] = temp_dark.strip()
+                     
+            data = datetime.strptime(data.strip()[0:10], '%d.%m.%Y')
+            wind = wind.strip()
+            wet = wet.strip()
+            pressure = pressure.strip()
+            temp = temp.strip()
+            wind_dark = wind_dark.strip()
+            wet_dark = wet_dark.strip()
+            pressure_dark = pressure_dark.strip()
+            temp_dark = temp_dark.strip()
 
-            monthly_weather.append(result_weather)
+            save_weather_db(data, wind, wet, pressure, temp, wind_dark, wet_dark, pressure_dark, temp_dark)
+            #monthly_weather.append(result_weather)
 
-    return monthly_weather
+    #return monthly_weather
 
-result_weather_list = []
-date_now = 2009
+#result_weather_list = []
 
+date_old_year = 2009
+date_now_year = int(datetime.today().year)
+print(date_now_year)
 
-while date_now <= 2019:
+while date_old_year <= date_now_year:
         for i in range(1, 13, 1):
-            result_weather_list.append(get_python_weather(i, date_now))
-        date_now += 1
+            #result_weather_list.append()
+            get_python_weather(i, date_old_year)
+        date_old_year += 1
 
+"""
 with open('wundergroupCSV.csv', 'a') as f:
     writer = csv.writer(f, delimiter=',')
     writer.writerow(result_weather_list)
+"""
 
-
-#print(result_weather_list[5]['data'])   
-
-#def save_news(title, url, published):
-#    news_exists = News.query.filter(News.url == url).count()
-#    print(news_exists)
-#    if not news_exists:
-#        new_news = News(title=title, url=url, published=published)
-#        db.session.add(new_news)
-#        db.session.commit()
+def save_weather_db(data, wind, wet, pressure, temp, wind_dark, wet_dark, pressure_dark, temp_dark):
+    weather_data_exists = weather.query.filter(weather.data == data).count()
+    print(weather_data_exists)
+    if not weather_data_exists:
+        new_weather = weather(data=data, wind=wind, wet=wet, pressure=pressure, 
+        temp=temp, wind_dark=wind_dark, wet_dark=wet_dark, pressure_dark=pressure_dark, temp_dark=temp_dark)
+        db.session.add(new_weather)
+        db.session.commit()

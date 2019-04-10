@@ -16,6 +16,9 @@ def create_app():
         title = "WeatherStatistics"
         weather_text = weather_by_city(app.config["WEATHER_DEFAULT_CITY"])
         
+        #показать все данные из таблицы
+        #weather_table = weatherquery.all()
+
         return render_template('index.html', page_title=title, weather_nows=weather_text)
     
     return app
