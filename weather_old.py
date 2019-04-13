@@ -1,6 +1,11 @@
 import csv
 
-from WebApp.model import weather_data_history
+
+from WebApp import create_app
+from WebApp.model import db, weather_data_history
+
+flask_app = create_app()
+flask_app.app_context().push()
 
 def save_weather_old_db(data, temp_max, temp_min, temp, pressure, wet):
     weather_data_exists = weather_data_history.query.filter(weather_data_history.data == data).count()

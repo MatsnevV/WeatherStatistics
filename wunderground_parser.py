@@ -12,6 +12,7 @@ from WebApp import create_app
 from WebApp.model import db, weather_data
 
 flask_app = create_app()
+flask_app.app_context().push()
 
 def get_html(url):
     #проверим на валидность cтраницу и исключим ошибки
@@ -43,7 +44,7 @@ def get_python_weather(month, year):
         #all_weather = soup.find('div', class_="archive__cnt jsTableContent")
 
         all_weather = soup.find_all('table', class_="archive-table")[1].find_all('tr')
-        print(all_weather)
+        #print(all_weather)
         #monthly_weather = []
 
         for weather in all_weather:
@@ -56,16 +57,16 @@ def get_python_weather(month, year):
             data = weather.find('td', class_="archive-table__date").text
             #изменяем формат времени
             data = data.strip()[0:10]
-            print(data)
+            #print(data)
             wind_dark = weather.find('td', class_="archive-table__wind dark").text
             wet_dark = weather.find('td', class_="archive-table__wet dark").text
             pressure_dark = weather.find('td', class_="archive-table__pressure dark").text
             temp_dark = weather.find('td', class_="archive-table__temp dark").text
 
-            print(data,wind,wet,pressure,temp,wind_dark,wet_dark,pressure_dark,temp_dark)
+            #print(data,wind,wet,pressure,temp,wind_dark,wet_dark,pressure_dark,temp_dark)
                      
             data = datetime.strptime(data, '%d.%m.%Y')
-            print(data)
+            #print(data)
             #print(type(wind_dark))
             #print(wind_dark)
             wind = get_walid_int(wind)
