@@ -1,9 +1,9 @@
-#внешний импорт
+﻿#внешний импорт
 from flask import Flask, render_template
 
 #внутрений импорт
 from WebApp.weather_now import weather_by_city
-from WebApp.model import db, weather
+#from WebApp.model import db, weather_data
 
 
 def create_app():
