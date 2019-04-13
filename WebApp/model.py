@@ -20,3 +20,13 @@ class weather_data(db.Model):
             return f'<weather_data {self.data}>'
 
 
+class weather_data_history(db.Model):
+        id = db.Column(db.Integer, primary_key=True)
+        #id_city = db.Column(db.Integer,nullable=False)
+        data = db.Column(db.DateTime, unique=True, nullable=False)
+        wet = db.Column(db.Integer, nullable=True)
+        pressure = db.Column(db.Integer, nullable=True)
+        temp = db.Column(db.Integer, nullable=True)
+        temp_max = db.Column(db.Integer, nullable=True)
+        temp_min = db.Column(db.Integer, nullable=True)
+        text = db.Column(db.Text, nullable=True)

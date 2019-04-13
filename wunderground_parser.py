@@ -6,9 +6,12 @@ import requests
 #from datetime import datetime
 #from time import sleep
 from datetime import datetime, date
+from WebApp import create_app
 
 #from WebApp.model import db, weather_data
 from WebApp.model import db, weather_data
+
+flask_app = create_app()
 
 def get_html(url):
     #проверим на валидность cтраницу и исключим ошибки

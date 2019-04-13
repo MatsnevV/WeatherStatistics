@@ -1,1 +1,0 @@
-cmd /C pip freeze 1>> requirements.txt

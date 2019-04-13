@@ -1,9 +1,9 @@
 ﻿#внешний импорт
 from flask import Flask, render_template
 
-#внутрений импорт
+#внутрений импортpip 
 from WebApp.weather_now import weather_by_city
-#from WebApp.model import db, weather_data
+from WebApp.model import db, weather_data
 
 
 def create_app():
@@ -15,7 +15,8 @@ def create_app():
     def index():
         title = "WeatherStatistics"
         weather_text = weather_by_city(app.config["WEATHER_DEFAULT_CITY"])
-        
+        if int(weather_text['temp_C']) > 0:
+            weather_text = f'+{weather_text["temp_C"]}'
         #показать все данные из таблицы
         #weather_table = weatherquery.all()
 
