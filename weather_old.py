@@ -1,5 +1,5 @@
 import csv
-
+from datetime import datetime
 
 from WebApp import create_app
 from WebApp.model import db, weather_data_history
@@ -18,7 +18,7 @@ def save_weather_old_db(data, temp_max, temp_min, temp, pressure, wet):
 with open("moscow_old.csv", "r") as f:
     reader = csv.DictReader(f, delimiter=';')
     for line in reader:
-        data = line["data"]
+        data = datetime.strptime(line["data"], '%d.%m.%Y')
         temp_max = line["temp_max"]
         temp_min = line["temp_min"]
         temp = line["temp"]

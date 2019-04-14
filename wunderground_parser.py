@@ -57,6 +57,7 @@ def get_python_weather(month, year):
             data = weather.find('td', class_="archive-table__date").text
             #изменяем формат времени
             data = data.strip()[0:10]
+            
             #print(data)
             wind_dark = weather.find('td', class_="archive-table__wind dark").text
             wet_dark = weather.find('td', class_="archive-table__wet dark").text
@@ -64,9 +65,14 @@ def get_python_weather(month, year):
             temp_dark = weather.find('td', class_="archive-table__temp dark").text
 
             #print(data,wind,wet,pressure,temp,wind_dark,wet_dark,pressure_dark,temp_dark)
-                     
+            #изменил формат
             data = datetime.strptime(data, '%d.%m.%Y')
-            #print(data)
+            # проверка существовании даты если нет то стоп
+            if data >= datetime.now():
+                print('выход')
+                #print(f'{data} {datetime.now()}')
+                break
+            #print(f'{data} {datetime.now()}')
             #print(type(wind_dark))
             #print(wind_dark)
             wind = get_walid_int(wind)
@@ -85,26 +91,40 @@ def get_python_weather(month, year):
 
 
 def save_weather_db(data, wind, wet, pressure, temp, wind_dark, wet_dark, pressure_dark, temp_dark):
+    """
+    data -дата
+    wind- скорость ветра м/с
+    wet -валжность %
+    pressure- давление мм рт.ст.
+    temp -температура С*
+    """
     weather_data_exists = weather_data.query.filter(weather_data.data == data).count()
-    print(weather_data_exists)
+    #print(weather_data_exists)
     if not weather_data_exists:
         new_weather = weather_data(data=data, wind=wind, wet=wet, pressure=pressure, temp=temp, wind_dark=wind_dark, wet_dark=wet_dark, pressure_dark=pressure_dark, temp_dark=temp_dark)
         db.session.add(new_weather)
         db.session.commit()
 
 #result_weather_list = []
-
+#для проверки изменить год минимальный год это 2009
 date_old_year = 2009
 date_now_year = int(datetime.today().year)
-print(date_now_year)
+date_now_month = int(datetime.today().month)
+#print(date_now_year)
 
+#сделать функцию вызываемую из под init
 while date_old_year <= date_now_year:
         for i in range(1, 13, 1):
-            #result_weather_list.append()
             get_python_weather(i, date_old_year)
+            if date_old_year >= date_now_year and i == date_now_month:
+                print('выход')
+                #print(f'{date_old_year} == {date_now_year} == {date_now_month}')
+                break
+            #result_weather_list.append()
         date_old_year += 1
 
 """
+#запись в *.csv
 with open('wundergroupCSV.csv', 'a') as f:
     writer = csv.writer(f, delimiter=',')
     writer.writerow(result_weather_list)
