@@ -1,4 +1,4 @@
-
+﻿
 
 Linux и Mac: export FLASK_APP=WebApp && export FLASK_ENV=development && flask run
 
@@ -6,3 +6,10 @@ Windows: set FLASK_APP=WebApp && set FLASK_ENV=development && set FLASK_DEBUG=1 
 
 
 
+*добавить config.py в .gitignore
+**расчет по хольту
+
+*добавить возможность грузить больше городов( определение положения человека)
+*min-max добавить год и 
+*
+*
