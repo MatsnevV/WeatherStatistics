@@ -10,6 +10,6 @@ Windows: set FLASK_APP=WebApp && set FLASK_ENV=development && set FLASK_DEBUG=1 
 **расчет по хольту
 
 *добавить возможность грузить больше городов( определение положения человека)
-*
+*min-max(сделанно)
 *
 *
