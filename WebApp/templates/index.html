@@ -3,156 +3,168 @@
 <head>
     <!-- Required meta tags -->
     <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=yes">
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
         integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
     <title>{{page_title}}</title>
+    <style type="text/css">
+      #content {
+       width: 500px; /* Ширина слоя */
+       margin: 0 auto 50px; /* Выравнивание по центру */
+      }
+      #footer {
+       position: fixed; /* Фиксированное положение */
+       left: 0; bottom: 0; /* Левый нижний угол */
+       padding: 5px; /* Поля вокруг текста */
+       width: 100%; /* Ширина слоя */
+      }
+     </style>
+     <style>
+      .force-scroll {
+        height: auto;
+        max-height: 200px;
+        overflow-x: hidden;
+    }
+  </style>
 </head>
 <body>
 
  <!-- Header -->
  <header>
-  <div class="collapse bg-dark" id="navbarHeader">
+  <div class="bg-dark" id="navbarHeader">
     <div class="container">
-      <div class="row">
-        <div class="col-sm-8 col-md-7 py-4">
-          <h4 class="text-white">About</h4>
-          <p class="text-muted">Add some information about the album below, the author, or any other background context. Make it a few sentences long so folks can pick up some informative tidbits. Then, link them off to some social networking sites or contact information.</p>
-        </div>
-        <div class="col-sm-4 offset-md-1 py-4">
-          <h4 class="text-white">Contact</h4>
-          <ul class="list-unstyled">
-            <li><a href="#" class="text-white">Follow on Twitter</a></li>
-            <li><a href="#" class="text-white">Like on Facebook</a></li>
-            <li><a href="#" class="text-white">Email me</a></li>
-          </ul>
-        </div>
-      </div>
-    </div>
+
   </div>
   <div class="navbar navbar-dark bg-dark shadow-sm">
     <div class="container d-flex justify-content-between">
       <a href="#" class="navbar-brand d-flex align-items-center">
-        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="mr-2" focusable="false" aria-hidden="true"><path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"></path><circle cx="12" cy="13" r="4"></circle></svg>
-        <strong>Album</strong>
       </a>
-      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarHeader" aria-controls="navbarHeader" aria-expanded="false" aria-label="Toggle navigation">
+      <button class="navbar-toggler" type="button" data-target="#navbarHeader" aria-controls="navbarHeader" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
     </div>
   </div>
  </header> 
+ 
  <!-- Main --->
 <main role="main">
 
 <div class="container">
-        <div class="row">
-            <h3> 
-                Сервис погоды г.Москвы готов тебя порадовать статистическими показателями погоды на любую дату 
-            </h3>
+    <div class="row">
+       <div class="col-9">
+        <h3>
+          СЕРВИС ПОГОДЫ города Москвы готов порадовать тебя 
+          статистическими показателями погоды!
+        </h3>
+        <br></br>
+        <h5>
+          Выбери дату:
+        </h5>
+<div class="btn-group">
+  <button class="btn btn-warning btn-lg dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+    День
+  </button>
 
-            <h1>
-                {{page_title}}
-            </h1>
-                <div class="col-9">
-
-<!-- строка с месяцем radio-batton-->
-<div class="btn-group btn-group-toggle" data-toggle="buttons">
-  <label class="btn btn-secondary">
-    <input type="radio" name="options" id="option1" autocomplete="off" checked> Янв.
-  </label>
-  <label class="btn btn-secondary">
-    <input type="radio" name="options" id="option2" autocomplete="off"> Февр.
-  </label>
-  <label class="btn btn-secondary">
-    <input type="radio" name="options" id="option3" autocomplete="off"> Март
-  </label>
-    <label class="btn btn-secondary">
-    <input type="radio" name="options" id="option4" autocomplete="off" checked> Апр.
-  </label>
-  <label class="btn btn-secondary">
-    <input type="radio" name="options" id="option5" autocomplete="off"> Май
-  </label>
-  <label class="btn btn-secondary">
-    <input type="radio" name="options" id="option6" autocomplete="off"> Июнь
-  </label>
-    <label class="btn btn-secondary">
-    <input type="radio" name="options" id="option7" autocomplete="off" checked> Июль
-  </label>
-  <label class="btn btn-secondary">
-    <input type="radio" name="options" id="option8" autocomplete="off"> Авг.
-  </label>
-  <label class="btn btn-secondary">
-    <input type="radio" name="options" id="option9" autocomplete="off"> Сент.
-  </label>
-    <label class="btn btn-secondary">
-    <input type="radio" name="options" id="option10" autocomplete="off" checked> Окт.
-  </label>
-  <label class="btn btn-secondary">
-    <input type="radio" name="options" id="option11" autocomplete="off"> Нояб.
-  </label>
-  <label class="btn btn-secondary">
-    <input type="radio" name="options" id="option12" autocomplete="off"> Дек.
-  </label>
-</div>
-
-
-<div class="climate-calendar__row climate-calendar__row_header">
-	<div class="climate-calendar__cell climate-calendar__cell_header">
-	<div class="climate-calendar__text">Пн</div>
-</div>
-<div class="climate-calendar__cell climate-calendar__cell_header">
-	<div class="climate-calendar__text">Вт</div>
-</div><div class="climate-calendar__cell climate-calendar__cell_header">
-	<div class="climate-calendar__text">Ср</div>
-</div>
-<div class="climate-calendar__cell climate-calendar__cell_header">
-	<div class="climate-calendar__text">Чт</div>
-</div>
-<div class="climate-calendar__cell climate-calendar__cell_header">
-	<div class="climate-calendar__text">Пт</div>
-</div>
-<div class="climate-calendar__cell climate-calendar__cell_header">
-	<div class="climate-calendar__text climate-calendar__text_holiday">Сб</div>
-</div>
-<div class="climate-calendar__cell climate-calendar__cell_header">
-	<div class="climate-calendar__text climate-calendar__text_holiday">Вс</div>
-</div>
+  <div class="dropdown-menu dropdown-warning force-scroll">
+      <a class="dropdown-item" href="#">День</a>
+      <a class="dropdown-item" href="#">01</a>
+      <a class="dropdown-item" href="#">02</a>
+      <a class="dropdown-item" href="#">03</a>
+      <a class="dropdown-item" href="#">04</a>
+      <a class="dropdown-item" href="#">05</a>
+      <a class="dropdown-item" href="#">06</a>
+      <a class="dropdown-item" href="#">07</a>
+      <a class="dropdown-item" href="#">08</a>
+      <a class="dropdown-item" href="#">09</a>
+      <a class="dropdown-item" href="#">10</a>
+      <a class="dropdown-item" href="#">11</a>
+      <a class="dropdown-item" href="#">12</a>
+      <a class="dropdown-item" href="#">13</a>
+      <a class="dropdown-item" href="#">14</a>
+      <a class="dropdown-item" href="#">15</a>
+      <a class="dropdown-item" href="#">16</a>
+      <a class="dropdown-item" href="#">17</a>
+      <a class="dropdown-item" href="#">18</a>
+      <a class="dropdown-item" href="#">19</a>
+      <a class="dropdown-item" href="#">20</a>
+      <a class="dropdown-item" href="#">21</a>
+      <a class="dropdown-item" href="#">22</a>
+      <a class="dropdown-item" href="#">23</a>
+      <a class="dropdown-item" href="#">24</a>
+      <a class="dropdown-item" href="#">25</a>
+      <a class="dropdown-item" href="#">26</a>
+      <a class="dropdown-item" href="#">27</a>
+      <a class="dropdown-item" href="#">28</a>
+      <a class="dropdown-item" href="#">29</a>
+      <a class="dropdown-item" href="#">30</a>
+      <a class="dropdown-item" href="#">31</a>
+    </div>
 </div>
 
-
-                    
+<div class="btn-group">
+<button class="btn btn-warning btn-lg dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+    Месяц
+  </button>
+  <div class="dropdown-menu">
+    <a class="dropdown-item" href="#">месяц</a>
+    <a class="dropdown-item" href="#">январь</a>
+    <a class="dropdown-item" href="#">февраль</a>
+    <a class="dropdown-item" href="#">март</a>
+    <a class="dropdown-item" href="#">апрель</a>
+    <a class="dropdown-item" href="#">май</a>
+    <a class="dropdown-item" href="#">июнь</a>
+    <a class="dropdown-item" href="#">июль</a>
+    <a class="dropdown-item" href="#">август</a>
+    <a class="dropdown-item" href="#">сентябрь</a>
+    <a class="dropdown-item" href="#">октябрь</a>
+    <a class="dropdown-item" href="#">ноябрь</a>
+    <a class="dropdown-item" href="#">декабрь</a>
+  </div>
 </div>
 
-                
-       <div class="col-3">
-                    <h1>
+<br></br>
+<button type="button" class="btn btn-info btn-lg" style="color: black;">Получи прогноз</button>
+</div>
+       <div class="col-3" >
+          <br></br>
+          <br></br>
+          <br></br>
+                    <h3  class="float-right" style="color: red;" >
                         {% if weather_nows %}
-                            Погода на данный момент: {{ weather_nows.temp_C }}
+                            Погода на данный момент:
+                            {{ weather_nows.temp_C }}<sup>o</sup>
                         {% else %}
                             Сервис погоды временно недоступен
                         {% endif %}
-                    </h1>
-            </div>
-        </div>
-    </div>
+                    </h3>
+                  <div><img src="cat.jpg"></div>
+       </div>
 </main>
-
- <!-- Futer --->
- <footer class="text-muted">
-  <div class="container">
-    <p class="float-right">
-      <a href="#">Back to top</a>
-    </p>
-    <p>Album example is © Bootstrap, but please download and customize it for yourself!</p>
-    <p>New to Bootstrap? <a href="https://getbootstrap.com">Visit the homepage</a> or read our <a href="/docs/4.3.1/getting-started/introduction/">getting started guide</a>.</p>
-  </div>
-</footer>
- 
 
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+<!-- Futer --->
+
+<footer>
+    <div id="footer" class="bg-dark" id="navbarHeader">
+        <div class="container">
+          <div class="row">
+            <div class="col-sm-12 col-md-5 py-1">
+              <h4 class="text-white">О нас</h4>
+              <p class="text-muted">Сервис статистики погоды города Москвы</p>
+            </div>
+            <div class="col-sm-3 offset-md-2 py-1">
+              <h4 class="text-white">Контакты</h4>
+              <ul class="list-unstyled">
+                <li><a href="#" class="text-muted" href="#">Свяжитесь с нами</a></li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+  </footer>
+   
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
         integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
         crossorigin="anonymous"></script>

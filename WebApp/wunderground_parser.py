@@ -71,7 +71,3 @@ while date_now <= 2019:
 with open('wundergroupCSV.csv', 'a') as f:
     writer = csv.writer(f, delimiter=',')
     writer.writerow(result_weather_list)
-
-
-#print(result_weather_list[5]['data'])   
-
