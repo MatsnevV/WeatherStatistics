@@ -30,3 +30,6 @@ class weather_data_history(db.Model):
         temp_max = db.Column(db.Integer, nullable=True)
         temp_min = db.Column(db.Integer, nullable=True)
         text = db.Column(db.Text, nullable=True)
+
+        def __repr__(self):
+            return f'<weather_data_history {self.data}>'

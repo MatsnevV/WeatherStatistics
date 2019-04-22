@@ -2,13 +2,13 @@
 from flask import Flask, render_template
 from datetime import datetime
 import os
-
+from flask import request
 #внутрений импортpip 
 from WebApp.weather_now import weather_by_city
-from WebApp.model import db, weather_data
-from WebApp.min_max import min
-from WebApp.min_max import max
+from WebApp.model import db, weather_data, weather_data_history
+from WebApp.min_max import min, max
 from WebApp.forms import GetDateForms
+
 
 data_now = datetime.today()
 
@@ -17,28 +17,41 @@ def create_app():
     app.config.from_pyfile('config.py')
     db.init_app(app)
 
-    @app.route('/')
+    @app.route('/', methods=['GET']) 
     def index():
-        #form = GetDateForms()
+        forecast_form = GetDateForms()
         title = "WeatherStatistics"
         max_now = max(data_now)
         min_now = min(data_now)
         weather_text = weather_by_city(app.config["WEATHER_DEFAULT_CITY"])
         if int(weather_text['temp_C']) > 0:
-            weather_text = f'+{weather_text["temp_C"]}'
+            weather_nows = f'+{weather_text["temp_C"]}'
+        if int(weather_text['temp_C']) <= -30:
+            weather_nows_text = f'На моей мега-современной метеостанции термометр лопнул от холода. Сиди дома у печки!'
+        elif int(weather_text['temp_C']) <= -15:
+            weather_nows_text = f'Капитан подштанник! Сегодня ваш день!'
+        elif int(weather_text['temp_C']) <= -1:
+            weather_nows_text = f'Вот сейчас тебе самое время просить погодное убежище в Испании!'
+        elif int(weather_text['temp_C']) <= 8:
+            weather_nows_text = f'Ну, такое себе погода… Но на пробежку выйти тем не менее можно… Но в калошах.'
+        elif int(weather_text['temp_C']) <= 23:
+            weather_nows_text = f'Радость-то какая! Уже можно гулять в расстёгнутом пуховике (как тогда, в июне 2017го).'
+        elif int(weather_text['temp_C']) <= 40:
+            weather_nows_text = f'Вроде потеплело:) Но это не точно:( Рекомендую шубу и валенки далеко не убирать.'
         #показать все данные из таблицы
         #weather_table = weatherquery.all()
-        return render_template('index.html', page_title=title, weather_nows=weather_text, max_now=max_now, min_now=min_now)
-    
-    @app.route('/forecast')
+
+        date = request.args.get('date')
+        month = request.args.get('month')
+
+        summoon = f'{date} {month}'
+        #redirect(url_for('index'))
+        return render_template('index.html', page_title=title, weather_nows=weather_nows, weather_nows_text=weather_nows_text, max_now=max_now, min_now=min_now, form=forecast_form)
+        
+    @app.route('/forecast', methods=['GET'])
     def forecast():
-        title = "WeatherStatistics"
-        max_now = max(data_now)
-        min_now = min(data_now)
-        weather_text = weather_by_city(app.config["WEATHER_DEFAULT_CITY"])
-        if int(weather_text['temp_C']) > 0:
-            weather_text = f'+{weather_text["temp_C"]}'
         forecast_form = GetDateForms()
-        return render_template('forecast.html', page_title=title, weather_nows=weather_text, max_now=max_now, min_now=min_now, form=forecast_form)
+        return render_template('forecast.html', itogo=summoon, page_title=title, weather_nows=weather_nows, weather_nows_text=weather_nows_text, max_now=max_now, min_now=min_now, form=forecast_form)
 
     return app
+

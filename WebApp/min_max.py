@@ -40,7 +40,7 @@ def min(data_search):
         data_a = f'{date_now_day}.{date_now_month}.{i}'
         data_a = datetime.strptime(data_a, '%d.%m.%Y')
         for temp in weather_data_history.query.filter(weather_data_history.data == data_a):
-            #поверка исключения на наличие ","
+            #проверка исключения на наличие ","
             try:
                 b = temp.temp_min.replace(',', '.')
             except AttributeError:

@@ -54,19 +54,18 @@
     <div class="row">
        <div class="col-8">
         <h4>
-          СЕРВИС ПОГОДЫ города Москвы готов порадовать тебя 
-          статистическими показателями погоды!
+          Кот ВАСИЛИЙ готов порадовать тебя статистическими показателями погоды по Москве
         </h4>
         <br></br>
-        <h5>
-          Выбери дату:
-        </h5>
+        <h4 style="color: blue;">
+          <b>Двуногий, выбери дату!</b>
+        </h4>
 
   <!--<div class="dropdown-menu dropdown-warning force-scroll">-->
-      <form  class="form-inline" action="" method="POST"> 
+      <form  class="form-inline" action="" method="GET"> 
       <div class="form-group mb-2" >
           <label for="exampleFormControlSelect1">День</label>
-      <select class="form-control" id="exampleFormControlSelect1">
+      <select class="form-control" id="exampleFormControlSelect1" name="date" value="{{ request.args.get('date', '') }}">
       <option>01</option>
       <option>02</option>
       <option>03</option>
@@ -102,7 +101,7 @@
   </div>
     <div class="form-group mx-sm-3 mb-2">
       <label for="exampleFormControlSelect1">Месяц</label>
-  <select class="form-control" id="exampleFormControlSelect1">
+  <select class="form-control" id="exampleFormControlSelect1" name="month" value="{{ request.args.get('month', '') }}">
       <option>январь</option>
       <option>февраль</option>
       <option>март</option>
@@ -117,28 +116,36 @@
       <option>декабрь</option>
     </select>
   </div>
-    <button type="submit" class="btn btn-primary mb-2" style="color: yellow;"> <b>Получи прогноз</b></button>
-</form>
+  {{ form.submit() }}
+    <!--
+      <button type="submit" class="btn btn-primary mb-2" style="color: yellow;"> <b>Получи прогноз</b></button>
+    -->
+    </form>
+<form action="{{ url_for('forecast') }}" method="GET"></form>
 
+ {{ itogo }}
 </div>
        <div class="col-4" >
-          <br></br>
-          <br></br>
+          
         
-                  <h3  class="float-left" style="color: blue;" >
+                  <h5  class="float-left" style="color: red;" >
                     {% if weather_nows %}
-                      Температура сейчас:
+                      <b>Василий о погоде на сегодня:</b>
+                      </h5>
+                      <h5 style="color: red;">
+                      <div><img src="https://www.meme-arsenal.com/memes/35547e986ea4646f161267cdfa543caa.jpg" width=241px height=230px></div>
+                      Муррр, сегодня температура:
                         {{ weather_nows }}<sup>o</sup>
+                        {{ weather_nows_text }}
                     {% else %}
                         Сервис погоды временно недоступен
                     {% endif %}
-                    </h3>
-                  </br>
+                    </h5>
                   <h5>
-                
-                      На сегодняшнюю дату максимальная температура зарегистрирована в {{max_now}}<sup>o</sup>], а минимальная - в {{min_now}}<sup>o</sup>].
+                  <p>
+                    На сегодняшнюю дату максимальная температура зарегистрирована в {{max_now}}<sup>o</sup>], а минимальная - в {{min_now}}<sup>o</sup>].
+                  </p>
                   </h5>
-                  <div><img src="https://photo.99px.ru/photos/tags/koshki/solnce/?cp=3"></div>
        </div>
 </main>
 
