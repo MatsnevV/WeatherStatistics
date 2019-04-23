@@ -117,14 +117,18 @@
     </select>
   </div>
   {{ form.submit() }}
+
     <!--
       <button type="submit" class="btn btn-primary mb-2" style="color: yellow;"> <b>Получи прогноз</b></button>
     -->
     </form>
-<form action="{{ url_for('forecast') }}" method="GET"></form>
+    {{ itogo }}
+ 
+<form action="{{ url_for('index') }}" method="GET"></form>
 
  {{ itogo }}
 </div>
+
        <div class="col-4" >
           
         

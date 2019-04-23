@@ -17,7 +17,7 @@ def create_app():
     app.config.from_pyfile('config.py')
     db.init_app(app)
 
-    @app.route('/', methods=['GET']) 
+    @app.route('/', methods=['GET', 'POST']) 
     def index():
         forecast_form = GetDateForms()
         title = "WeatherStatistics"
@@ -43,15 +43,12 @@ def create_app():
 
         date = request.args.get('date')
         month = request.args.get('month')
-
+        print(date)
+        print(month)
         summoon = f'{date} {month}'
-        #redirect(url_for('index'))
-        return render_template('index.html', page_title=title, weather_nows=weather_nows, weather_nows_text=weather_nows_text, max_now=max_now, min_now=min_now, form=forecast_form)
-        
-    @app.route('/forecast', methods=['GET'])
-    def forecast():
-        forecast_form = GetDateForms()
-        return render_template('forecast.html', itogo=summoon, page_title=title, weather_nows=weather_nows, weather_nows_text=weather_nows_text, max_now=max_now, min_now=min_now, form=forecast_form)
+        print(summoon)
+        #redirect()
+        return render_template('index.html', itogo=summoon, page_title=title, weather_nows=weather_nows, weather_nows_text=weather_nows_text, max_now=max_now, min_now=min_now, form=forecast_form)
 
     return app
 
