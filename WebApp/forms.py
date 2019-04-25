@@ -6,7 +6,7 @@ from wtforms.validators import DataRequired
 class GetDateForms(FlaskForm):
     """date = TextField('День')
     month = TextField('Месяц')"""
-    submit = SubmitField('+Получи прогноз+', render_kw={"class": "btn btn-primary"})
+    submit = SubmitField('Получи прогноз', render_kw={"class": "btn btn-primary", "style": "color: black;"})
  
 
 

@@ -7,6 +7,7 @@
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
         integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+    <link rel="shortcut icon" href="http://thefavicongallery.com/m/a/makikoitoh.com.ico" type="image/x-icon">
     <title>{{page_title}}</title>
     <style type="text/css">
       #content {
@@ -102,31 +103,29 @@
     <div class="form-group mx-sm-3 mb-2">
       <label for="exampleFormControlSelect1">Месяц</label>
   <select class="form-control" id="exampleFormControlSelect1" name="month" value="{{ request.args.get('month', '') }}">
-      <option>январь</option>
-      <option>февраль</option>
-      <option>март</option>
-      <option>апрель</option>
-      <option>май</option>
-      <option>июнь</option>
-      <option>июль</option>
-      <option>август</option>
-      <option>сентябр</option>
-      <option>октябрь</option>
-      <option>ноябрь</option>
-      <option>декабрь</option>
+      <option>01</option>
+      <option>02</option>
+      <option>03</option>
+      <option>04</option>
+      <option>05</option>
+      <option>06</option>
+      <option>07</option>
+      <option>08</option>
+      <option>09</option>
+      <option>10</option>
+      <option>11</option>
+      <option>12</option>
     </select>
   </div>
   {{ form.submit() }}
+</form>
+<br></br>
+   {% if average_temp %}
+      <b> {{ average_temp }}<sup>o</sup>] </b> 
+   {% else %}
+       <b>Дата пока не выбрана. Выберите дату (кроме 30.02, 31.02, 31.04, 31.06, 31.09 и 31.11 - таких дат не существует)</b>
+   {% endif %}
 
-    <!--
-      <button type="submit" class="btn btn-primary mb-2" style="color: yellow;"> <b>Получи прогноз</b></button>
-    -->
-    </form>
-    {{ itogo }}
- 
-<form action="{{ url_for('index') }}" method="GET"></form>
-
- {{ itogo }}
 </div>
 
        <div class="col-4" >
@@ -138,7 +137,7 @@
                       </h5>
                       <h5 style="color: red;">
                       <div><img src="https://www.meme-arsenal.com/memes/35547e986ea4646f161267cdfa543caa.jpg" width=241px height=230px></div>
-                      Муррр, сегодня температура:
+                      Муррр, температура сегодня
                         {{ weather_nows }}<sup>o</sup>
                         {{ weather_nows_text }}
                     {% else %}

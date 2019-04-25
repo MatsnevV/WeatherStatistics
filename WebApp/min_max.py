@@ -21,7 +21,6 @@ def max(data_search):
                 a = temp.temp_max.replace(',', '.')
             except AttributeError:
                 a = temp.temp_max
-            #print(a, b)
             # замена , на . и на float
                 max_temp[i] = int(float(a))
         i += 1
