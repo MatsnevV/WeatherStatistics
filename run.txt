@@ -4,11 +4,12 @@ Linux и Mac: export FLASK_APP=WebApp && export FLASK_ENV=development && flask r
 
 Windows: set FLASK_APP=WebApp && set FLASK_ENV=development && set FLASK_DEBUG=1 && flask run
 
+Запуск Celery на Windows и Linux/Mac:
+- Linux/Mac celery -A tasks worker -B --loglevel=info
+- Windows set FORKED_BY_MULTIPROCESSING=1 && celery -A tasks worker --loglevel=info
+  (в отдельном окне терминала)  celery -A tasks beat
 
 
-*добавить config.py в .gitignore
+
 **расчет по хольту
-
 *добавить возможность грузить больше городов( определение положения человека)
-* favicon
-*

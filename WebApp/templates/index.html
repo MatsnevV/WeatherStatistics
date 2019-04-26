@@ -55,11 +55,11 @@
     <div class="row">
        <div class="col-8">
         <h4>
-          Кот ВАСИЛИЙ готов порадовать тебя статистическими показателями погоды по Москве
+          Я, кот ВАСИЛИЙ, готов порадовать тебя статистическим прогнозом погоды по Москве на любую дату
         </h4>
         <br></br>
         <h4 style="color: blue;">
-          <b>Двуногий, выбери дату!</b>
+          <b>Мяу, хозяин, выбери дату!</b>
         </h4>
 
   <!--<div class="dropdown-menu dropdown-warning force-scroll">-->
@@ -103,18 +103,18 @@
     <div class="form-group mx-sm-3 mb-2">
       <label for="exampleFormControlSelect1">Месяц</label>
   <select class="form-control" id="exampleFormControlSelect1" name="month" value="{{ request.args.get('month', '') }}">
-      <option>01</option>
-      <option>02</option>
-      <option>03</option>
-      <option>04</option>
-      <option>05</option>
-      <option>06</option>
-      <option>07</option>
-      <option>08</option>
-      <option>09</option>
-      <option>10</option>
-      <option>11</option>
-      <option>12</option>
+      <option>январь</option>
+      <option>февраль</option>
+      <option>март</option>
+      <option>апрель</option>
+      <option>май</option>
+      <option>июнь</option>
+      <option>июль</option>
+      <option>август</option>
+      <option>сентябрь</option>
+      <option>октябрь</option>
+      <option>ноябрь</option>
+      <option>декабрь</option>
     </select>
   </div>
   {{ form.submit() }}
@@ -123,8 +123,9 @@
    {% if average_temp %}
       <b> {{ average_temp }}<sup>o</sup>] </b> 
    {% else %}
-       <b>Дата пока не выбрана. Выберите дату (кроме 30.02, 31.02, 31.04, 31.06, 31.09 и 31.11 - таких дат не существует)</b>
+       <b>Дата пока не выбрана. Выбери дату (кроме 30.02, 31.02, 31.04, 31.06, 31.09 и 31.11 - таких дат не существует)</b>
    {% endif %}
+  
 
 </div>
 
