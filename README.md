@@ -47,8 +47,11 @@ WEB
 ######
 
 >Flask
+>
 >SQLAlchemy
+>
 >BeautifulSoup
+>
 >Bootstrap
 >
 >
