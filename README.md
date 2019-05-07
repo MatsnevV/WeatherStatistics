@@ -11,7 +11,7 @@ WeatherStatistics
 >Приложение работает в двух форматах:
 >>**Web-Приложение**
 >
->>**TelegramBot**
+>>**TelegramBot(пока не сделан)**
 >     
 
 Установка
@@ -31,21 +31,14 @@ WeatherStatistics
     pip install -r requirements.txt
 ```
 
-Настройка
----------
-
-..........
-
-
-
-
-
-
 Запуск
 ------
-
-
-.................
+```
+Linux и Mac: export FLASK_APP=WebApp && export FLASK_ENV=development && flask run
+```
+```
+Windows: set FLASK_APP=WebApp && set FLASK_ENV=development && set FLASK_DEBUG=1 && flask run
+```
 
 используемые технологии
 -----------------------
@@ -54,5 +47,11 @@ WEB
 ######
 
 >Flask
+>SQLAlchemy
+>BeautifulSoup
+>Bootstrap
+>
+>
+>
 ***
 
