@@ -1,6 +1,6 @@
 from datetime import datetime
 
-from WebApp.model import db, weather_data_history
+from webapp.model import db, weather_data_history
 
 #from WebApp import create_app
 #flask_app = create_app()

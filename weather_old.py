@@ -1,8 +1,8 @@
 import csv
 from datetime import datetime
 
-from WebApp import create_app
-from WebApp.model import db, weather_data_history
+from webapp import create_app
+from webapp.model import db, weather_data_history
 
 flask_app = create_app()
 flask_app.app_context().push()

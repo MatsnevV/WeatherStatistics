@@ -1,7 +1,7 @@
 from datetime import datetime
 import locale
 import platform
-from WebApp.model import db, weather_data_history
+from webapp.model import db, weather_data_history
 
 if platform.system() == 'Windows':
     locale.setlocale(locale.LC_ALL, "russian")

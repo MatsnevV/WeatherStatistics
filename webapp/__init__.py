@@ -4,11 +4,11 @@ from datetime import datetime
 import os
 from flask import request
 #внутрений импорт
-from WebApp.weather_now import weather_by_city
-from WebApp.model import db, weather_data, weather_data_history
-from WebApp.min_max import min, max
-from WebApp.forms import GetDateForms
-from WebApp.mean import average
+from webapp.weather_now import weather_by_city
+from webapp.model import db, weather_data, weather_data_history
+from webapp.min_max import min, max
+from webapp.forms import GetDateForms
+from webapp.mean import average
 #from tasks import cat_reminder
 
 data_now = datetime.today()
